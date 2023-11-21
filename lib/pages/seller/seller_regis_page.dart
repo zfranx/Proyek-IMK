@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projek_gede/pages/etalase_page.dart';
+import 'package:projek_gede/pages/seller/seller_etalase_page.dart';
 
 class SellerRegisPage extends StatefulWidget {
   const SellerRegisPage({super.key});
@@ -87,7 +88,7 @@ class _SellerRegisPageState extends State<SellerRegisPage> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const EtalasePage()));
+                      MaterialPageRoute(builder: (_) =>  const SellerEtalasePage()));
                 },
                 child: const Text(
                   'Registrasi',

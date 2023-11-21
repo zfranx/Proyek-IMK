@@ -21,7 +21,7 @@ class ProductItem extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         child: ElevatedButton(
           onPressed: () {
-            print("ki");
+            
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -34,7 +34,7 @@ class ProductItem extends StatelessWidget {
               Image.asset(
                 'assets/$image', // Assuming images are in the "assets" directory
                 width: double.infinity,
-                height: 200,
+                height: 150,
                 fit: BoxFit.cover,
               ),
               ListTile(
