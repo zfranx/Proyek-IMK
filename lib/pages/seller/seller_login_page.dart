@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:projek_gede/pages/etalase_page.dart';
-import 'package:projek_gede/pages/regis_page.dart';
-import 'package:projek_gede/pages/seller/seller_login_page.dart';
+import 'package:projek_gede/pages/seller/seller_regis_page.dart';
 
-class LoginPage extends StatefulWidget {
+class SellerLoginPage extends StatefulWidget {
+  const SellerLoginPage({super.key});
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  
+  _SellerLoginPageState createState() => _SellerLoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SellerLoginPageState extends State<SellerLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 187, 196, 17),
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text("Masuk Sebagai Penjual"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -37,8 +39,8 @@ class _LoginPageState extends State<LoginPage> {
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Email',
-                    hintText: 'Enter valid email id as abc@gmail.com'),
+                    labelText: 'Nama Pengguna',
+                    hintText: 'Masukkan Nama Pengguna'),
               ),
             ),
             const Padding(
@@ -65,7 +67,8 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               height: 50,
               width: 250,
-              
+              padding:
+                  EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
@@ -86,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => RegisPage()));
+                      MaterialPageRoute(builder: (_) => SellerRegisPage()));
                 },
                 child: const Text(
                   'Registrasi',
@@ -94,27 +97,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-             Container(
-              height: 60,
-              width: 260,
-              
-              padding:
-                  const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const SellerLoginPage()));
-                },
-                child: const Text(
-                  'Masuk Sebagai Penjual',
-               
-                ),
-              ),
-            ),
+             
            
           ],
         ),
-      ),
+      ),  
     );
   }
 }
