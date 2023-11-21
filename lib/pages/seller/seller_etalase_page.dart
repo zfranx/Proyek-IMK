@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projek_gede/pages/etalase_page.dart';
 import 'package:projek_gede/pages/seller/seller_add_menu.dart';
+import 'package:projek_gede/pages/seller/seller_report_page.dart';
 import 'package:projek_gede/widgets/product_showcase.dart';
 
 class SellerEtalasePage extends StatefulWidget {
@@ -36,15 +37,18 @@ class _SellerEtalasePageState extends State<SellerEtalasePage> {
             
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
-            label: 'Riwayat & Transaksi',
+            icon: Icon(Icons.align_vertical_bottom),
+            label: 'Laporan',
           ),
           
         ],
         onTap: (int index){
           if (index == 1){
-            Navigator.push(context, MaterialPageRoute(builder: (context) =>AddMenu()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>const AddMenu()));
           };
+          if(index ==2){
+            Navigator.push(context, MaterialPageRoute(builder: (context) =>const ReportPage()));
+          }
         },
       ),
       // This trailing comma makes auto-formatting nicer for build methods.

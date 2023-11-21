@@ -20,7 +20,8 @@ class ProductItem extends StatelessWidget {
     return Card(
       elevation: 4,
       margin: const EdgeInsets.all(8),
-      child: ElevatedButton(
+      child: TextButton(
+        
         onPressed: () {
           Navigator.push(
             context,
