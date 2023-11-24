@@ -42,17 +42,17 @@ class _SellerAddMenuState extends State<AddMenu> {
                   openFiles();
                 },
                 child: Container(
-                  width: 100,
-                  height: 50,
+              
                   padding:
-                    const EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
                   color: Colors.lightBlue,
                   child: const Text("Tambah Gambar",
-                  style: TextStyle(color: Color.fromARGB(255, 24, 23, 23), fontWeight: FontWeight.bold) ,
+                  style: TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontWeight: FontWeight.bold) ,
                   ),
                 ),
               ),
             ),
+            SizedBox(height: 10),
             const Padding(
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -68,7 +68,7 @@ class _SellerAddMenuState extends State<AddMenu> {
                   EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                obscureText: true,
+                //obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Harga',
@@ -80,7 +80,7 @@ class _SellerAddMenuState extends State<AddMenu> {
                   EdgeInsets.only(left: 15.0, right: 15.0, top: 15, bottom: 0),
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                obscureText: true,
+                //obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Deskripsi',
