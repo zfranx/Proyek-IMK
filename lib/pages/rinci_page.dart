@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projek_gede/pages/buy_page.dart';
 
 class RinciPage extends StatelessWidget {
   final Map<String, String> product;
@@ -71,14 +72,16 @@ class RinciPage extends StatelessWidget {
               padding: const EdgeInsets.only(
                   right: 8.0), // Add some space on the right
               child: ElevatedButton(
-                onPressed: () {
-                  // Implement logic for "Buy Now"
+                 onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => const BuyPage()));
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.blue,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  
                   child: Text(
                     'Buy Now',
                     style: TextStyle(fontSize: 18),
@@ -86,23 +89,23 @@ class RinciPage extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Implement logic for adding to cart or buying the product
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.orange,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    'Add to Cart',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: ElevatedButton(
+            //     onPressed: () {
+            //       // Implement logic for adding to cart or buying the product
+            //     },
+            //     style: ElevatedButton.styleFrom(
+            //       primary: Colors.orange,
+            //     ),
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(12.0),
+            //       child: Text(
+            //         'Add to Cart',
+            //         style: TextStyle(fontSize: 18),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

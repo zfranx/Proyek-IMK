@@ -11,12 +11,14 @@ class ProductShowcase extends StatelessWidget {
       'title': 'Pisang coklat',
       'description': 'Pisang Goreng Enak',
       'price': 'Rp 10.000',
+      'Toko': 'Nama Toko'
     },
     {
       'image': 'pisang2.jpg',
       'title': 'Pisang Goreng Keju',
       'description': 'Description for Product 2',
       'price': 'Rp 20.000',
+      'Toko': 'Nama Toko'
     },
     // Add more products as needed
   ];
@@ -37,6 +39,7 @@ class ProductShowcase extends StatelessWidget {
                   title: products[i]['title']!,
                   description: products[i]['description']!,
                   price: products[i]['price']!,
+                  toko: products[i]['Toko']!,
                 ),
               ),
           ],

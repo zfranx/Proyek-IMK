@@ -7,13 +7,17 @@ class ProductItem extends StatelessWidget {
   final String title;
   final String description;
   final String price;
+  final String toko;
 
   const ProductItem({
     required this.image,
     required this.title,
     required this.description,
-    required this.price,
+    required this.toko,
+    required this.price, 
   });
+  
+  
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +36,7 @@ class ProductItem extends StatelessWidget {
                   'title': title,
                   'description': description,
                   'price': price,
+                  'Toko' : toko,
                 },
               ),
             ),
