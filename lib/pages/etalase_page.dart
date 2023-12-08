@@ -1,9 +1,11 @@
-
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:projek_gede/widgets/product_showcase.dart';
 
 class EtalasePage extends StatefulWidget {
+  // final Map<String, String> product;
+
   const EtalasePage({super.key});
 
   @override
@@ -11,6 +13,13 @@ class EtalasePage extends StatefulWidget {
 }
 
 class _EtalasePageState extends State<EtalasePage> {
+  final refreshKey = GlobalKey<RefreshIndicatorState>();
+  final refreshController = StreamController<void>();
+
+  Future<void> refresh() async {
+    refreshController.sink.add(null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +28,16 @@ class _EtalasePageState extends State<EtalasePage> {
         centerTitle: true,
         title: const Text("Etalase"),
       ),
-      body: ProductShowcase(),
+      body: RefreshIndicator(
+        key: refreshKey,
+        onRefresh: refresh,
+        child: StreamBuilder(
+          stream: refreshController.stream,
+          builder: (context, snapshot) {
+            return ProductShowcase();
+          },
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.yellow,
         items: const [

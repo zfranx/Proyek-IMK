@@ -44,8 +44,8 @@ class ProductItem extends StatelessWidget {
         },
         child: Column(
           children: <Widget>[
-            Image.asset(
-              'assets/$image',
+            Image.network(
+              image,
               width: double.infinity,
               height: 150,
               fit: BoxFit.cover,

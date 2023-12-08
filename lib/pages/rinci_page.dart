@@ -1,8 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projek_gede/pages/buy_page.dart';
 
 class RinciPage extends StatelessWidget {
   final Map<String, String> product;
+  Future<String> fetchUserRole() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw Exception('Tidak auth');
+    }
+
+    DocumentSnapshot userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+    return userDoc['role'];
+  }
 
   const RinciPage({Key? key, required this.product}) : super(key: key);
 
@@ -17,9 +31,10 @@ class RinciPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Product Image
-            Image.asset(
-              'assets/${product['image']}',
-              height: 250,
+            Image.network(
+              product['image']!,
+              width: double.infinity,
+              height: 150,
               fit: BoxFit.cover,
             ),
 
@@ -66,47 +81,65 @@ class RinciPage extends StatelessWidget {
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  right: 8.0), // Add some space on the right
-              child: ElevatedButton(
-                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const BuyPage()));
+        child: SingleChildScrollView(
+          child: Row(
+            children: [
+              FutureBuilder<String>(
+                future: fetchUserRole(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<String> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                    print("error: ${snapshot.error}");
+                  } else {
+                    String role = snapshot.data!;
+                    if (role == 'buyer') {
+                      return ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => BuyPage(product: product)));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.blue,
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(12.0),
+                          child: Text(
+                            'Buy Now',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Container();
+                    }
+                  }
                 },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.all(12.0),
-                  
-                  child: Text(
-                    'Buy Now',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
               ),
-            ),
-            // Expanded(
-            //   child: ElevatedButton(
-            //     onPressed: () {
-            //       // Implement logic for adding to cart or buying the product
-            //     },
-            //     style: ElevatedButton.styleFrom(
-            //       primary: Colors.orange,
-            //     ),
-            //     child: Padding(
-            //       padding: const EdgeInsets.all(12.0),
-            //       child: Text(
-            //         'Add to Cart',
-            //         style: TextStyle(fontSize: 18),
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ],
+
+              // Expanded(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       // Implement logic for adding to cart or buying the product
+              //     },
+              //     style: ElevatedButton.styleFrom(
+              //       primary: Colors.orange,
+              //     ),
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(12.0),
+              //       child: Text(
+              //         'Add to Cart',
+              //         style: TextStyle(fontSize: 18),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
         ),
       ),
     );
